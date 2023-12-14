@@ -26,7 +26,7 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
     let engine = AudioEngine()
     let player = AudioPlayer()
     let buffer: AVAudioPCMBuffer
-    var userNickname: String = ""
+    var nickname: String = ""
 
     let filterBand1: EqualizerFilter
     let filterBand2: EqualizerFilter
@@ -185,14 +185,15 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         currentRound = 0
         player.stop()
         
-        
         // Hier prüfen Sie, ob der erzielte Score ein neuer Highscore ist
         //print(authenticationManager)
+        nickname = loadname() ?? "default"
+        print(nickname)
         if authenticationManager.userScore < totalScore {
-                Task {
-                    await authenticationManager.updateScore(nickname: userNickname, newScore: totalScore)
-                }
+            Task {
+                await authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
             }
+        }
                 
     }
                 

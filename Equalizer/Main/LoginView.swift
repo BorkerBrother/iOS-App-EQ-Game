@@ -15,6 +15,10 @@ func loadCredentials() -> (nickname: String?, password: String?) {
     return (nickname, password)
 }
 
+func loadname() -> (String?) {
+    let nickname = keychain.get("userNickname")
+    return (nickname)
+}
 
 enum NavigationTarget {
     case selectionView
@@ -70,6 +74,7 @@ class AuthenticationManager: ObservableObject {
 
     @Published var isUserLoggedIn: Bool = false
     @Published var userScore: Int = 0
+    @Published var currentUserNickname: String?
    
 
     init() {
@@ -89,6 +94,7 @@ class AuthenticationManager: ObservableObject {
                 print("Erfolgreich angemeldet: \(String(describing: user.nickname))")
                 DispatchQueue.main.async {
                                     self.isUserLoggedIn = true
+                                    self.currentUserNickname = user.nickname
                                     self.userScore = user.score
                                     }
                 saveCredentials(nickname: nickname, password: password)
@@ -121,43 +127,6 @@ class AuthenticationManager: ObservableObject {
         keychain.delete("userPassword")
     }
     
-    
-    func getScore() async -> Int? {
-        do {
-            let response = try await client.database
-                .from("Users")
-                .select("score")
-                .execute()
-
-            // Beispiel für die Decodierung der Antwort, abhängig von Ihrem Datenmodell
-            let users = try JSONDecoder().decode([User].self, from: response.data)
-            return users.first?.score
-        } catch {
-            print("Fehler beim Abrufen des Scores: \(error)")
-            return nil
-        }
-    }
-    
-    
-    func updateScore(nickname: String, newScore: Int) async {
-        do {
-            let response = try await client.database.from("Users")
-                .update(["score": newScore])
-                .eq("nickname", value: nickname)
-                .execute()
-
-            DispatchQueue.main.async {
-                if !response.data.isEmpty {
-                    print("Score erfolgreich aktualisiert")
-                    self.userScore = newScore
-                } else {
-                    print("Keine Änderung vorgenommen: ")
-                }
-            }
-        } catch {
-            print("Fehler beim Aktualisieren des Scores: \(error.localizedDescription)")
-        }
-    }
 
     func updateScoreIfHigher(nickname: String, newScore: Int) async {
         do {
@@ -165,7 +134,6 @@ class AuthenticationManager: ObservableObject {
             let userResponse = try await client.database.from("Users")
                 .select()
                 .eq("nickname", value: nickname)
-                .limit(1)
                 .execute()
 
             if !userResponse.data.isEmpty {

@@ -39,18 +39,21 @@ struct EqualizerApp: App {
                 
             } else {
                 // Anmeldebildschirm
-                NavigationStack {
+                NavigationView {
                     LoginView(isUserLoggedIn: $isUserLoggedIn, authenticationManager: authenticationManager)
-                        .environmentObject(AuthenticationManager()) // Hier wird es der View Hierarchie hinzugefügt
+                        .environmentObject(AuthenticationManager()) // Added to the View hierarchy
                         .onAppear {
                             let credentials = authenticationManager.loadCredentials()
                             if let nickname = credentials.nickname, let password = credentials.password {
+                                // For iOS 15.0, use 'async' method to handle asynchronous tasks.
+                                // You can use 'Task.init' as it's available in iOS 15.0.
                                 Task {
                                     await authenticationManager.login(nickname: nickname, password: password)
                                 }
                             }
                         }
                 }
+
                 
             }
         }

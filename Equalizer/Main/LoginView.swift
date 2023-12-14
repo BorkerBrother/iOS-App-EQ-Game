@@ -22,16 +22,12 @@ enum NavigationTarget {
 }
 
 struct User: Codable, Hashable {
-    var id: Int
-    var nickname: String
-    var password: String
-    let created_at: String
+    var id: Int?
+    var nickname: String?
+    var password: String?
+    let created_at: String?
     var score: Int
 }
-
-
-import SwiftUI
-import Supabase
 
 struct LoginView: View {
     @State private var nickname = ""
@@ -90,7 +86,7 @@ class AuthenticationManager: ObservableObject {
             let users = try JSONDecoder().decode([User].self, from: response.data)
 
             if let user = users.first, user.password == password {
-                print("Erfolgreich angemeldet: \(user.nickname)")
+                print("Erfolgreich angemeldet: \(String(describing: user.nickname))")
                 DispatchQueue.main.async {
                                     self.isUserLoggedIn = true
                                     self.userScore = user.score
@@ -125,6 +121,24 @@ class AuthenticationManager: ObservableObject {
         keychain.delete("userPassword")
     }
     
+    
+    func getScore() async -> Int? {
+        do {
+            let response = try await client.database
+                .from("Users")
+                .select("score")
+                .execute()
+
+            // Beispiel für die Decodierung der Antwort, abhängig von Ihrem Datenmodell
+            let users = try JSONDecoder().decode([User].self, from: response.data)
+            return users.first?.score
+        } catch {
+            print("Fehler beim Abrufen des Scores: \(error)")
+            return nil
+        }
+    }
+    
+    
     func updateScore(nickname: String, newScore: Int) async {
         do {
             let response = try await client.database.from("Users")
@@ -132,47 +146,59 @@ class AuthenticationManager: ObservableObject {
                 .eq("nickname", value: nickname)
                 .execute()
 
-            print("Score erfolgreich aktualisiert")
-            self.userScore = newScore
+            DispatchQueue.main.async {
+                if !response.data.isEmpty {
+                    print("Score erfolgreich aktualisiert")
+                    self.userScore = newScore
+                } else {
+                    print("Keine Änderung vorgenommen: ")
+                }
+            }
         } catch {
             print("Fehler beim Aktualisieren des Scores: \(error.localizedDescription)")
         }
     }
 
-    func getCurrentHighscore(nickname: String, completion: @escaping (Int) -> Void) {
-        Task {
-            do {
-                let response = try await client.database.from("Users")
-                    .select("score")
-                    .filter("nickname", operator: .eq, value: nickname)
-                    .execute()
+    func updateScoreIfHigher(nickname: String, newScore: Int) async {
+        do {
+            // Fetch the current user's data
+            let userResponse = try await client.database.from("Users")
+                .select()
+                .eq("nickname", value: nickname)
+                .limit(1)
+                .execute()
 
-                // Überprüfen, ob Daten vorhanden sind
-                if !response.data.isEmpty {
-                    let users = try JSONDecoder().decode([User].self, from: response.data)
-                    if let firstUser = users.first {
-                        completion(firstUser.score) // Verwende den Score des ersten Benutzers in der Liste
+            if !userResponse.data.isEmpty {
+                
+                let users = try JSONDecoder().decode([User].self, from: userResponse.data)
+                if let currentUser = users.first {
+                    // Check if the new score is higher than the current score
+                    if newScore > currentUser.score {
+                        // Update the score in the database
+                        let updateResponse = try await client.database.from("Users")
+                            .update(["score": newScore])
+                            .eq("nickname", value: nickname)
+                            .execute()
+
+                        if !updateResponse.data.isEmpty {
+                            DispatchQueue.main.async {
+                                self.userScore = newScore
+                            }
+                        } else {
+                            print("Fehler beim Aktualisieren des Scores: ")
+                        }
                     } else {
-                        completion(0) // Keine Benutzer gefunden
-                        print("Fehler beim Abrufen des Highscores: ")
+                        print("Neuer Score ist nicht höher als der aktuelle Score.")
                     }
                 } else {
-                    completion(0) // Keine Daten gefunden
-                    print("Fehler beim Abrufen des Highscores: ")
+                    print("Benutzer nicht gefunden.")
                 }
-            } catch {
-                print("Fehler beim Abrufen des Highscores: \(error.localizedDescription)")
-                completion(0) // Fehlerfall
+            } else {
+                print("Fehler beim Abrufen des Benutzer-Scores: ")
             }
+        } catch {
+            print("Fehler beim Aktualisieren des Scores: \(error.localizedDescription)")
         }
     }
-
-
-
-
-
-
-
-
     
 }

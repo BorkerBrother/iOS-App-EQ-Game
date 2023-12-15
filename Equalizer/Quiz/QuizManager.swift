@@ -21,11 +21,11 @@ class QuizManager: ObservableObject {
     
     func addQuestion(_ question: Question) async throws {
         // Stellen Sie sicher, dass die Frage eine gültige ID hat, bevor Sie sie hinzufügen
-        var questionData = question
+        let questionData = question
 
         // Konvertieren Sie die Frage in ein JSON-Format, das in die Datenbank eingefügt werden kann
         let questionJSON = try JSONEncoder().encode(questionData)
-        guard let questionDictionary = try JSONSerialization.jsonObject(with: questionJSON) as? [String: Any] else {
+        guard try JSONSerialization.jsonObject(with: questionJSON) is [String: Any] else {
             throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Fehler beim Konvertieren der Frage in JSON"])
         }
 
@@ -66,7 +66,7 @@ class QuizManager: ObservableObject {
         do {
             var categoryData = category
             categoryData.id = nil // Entfernen der ID vor dem Speichern
-            let response = try await client.database.from("categories").insert([categoryData]).execute()
+            _ = try await client.database.from("categories").insert([categoryData]).execute()
             // Behandeln Sie hier die Antwort
         } catch {
             print("Fehler beim Speichern der Kategorie: \(error.localizedDescription)")

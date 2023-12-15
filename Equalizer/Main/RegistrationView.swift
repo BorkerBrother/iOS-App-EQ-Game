@@ -19,7 +19,7 @@ struct RegistrationView: View {
 
             Button("Registrieren") {
                 Task {
-                    await register()
+//                    await register()
                 }
             }
             .padding()
@@ -30,13 +30,13 @@ struct RegistrationView: View {
         .padding()
     }
 
-    func register() async {
-        do {
-            // Hier muss die benutzerdefinierte Registrierungslogik implementiert werden
-            // Zum Beispiel durch Hinzufügen eines neuen Benutzers zur User-Datenbank
-        } catch {
-            alertMessage = "Fehler bei der Registrierung: \(error.localizedDescription)"
-            showingAlert = true
-        }
-    }
+//    func register() async {
+//        do {
+//            // Hier muss die benutzerdefinierte Registrierungslogik implementiert werden
+//            // Zum Beispiel durch Hinzufügen eines neuen Benutzers zur User-Datenbank
+//        } catch {
+//            alertMessage = "Fehler bei der Registrierung: \(error.localizedDescription)"
+//            showingAlert = true
+//        }
+//    }
 }

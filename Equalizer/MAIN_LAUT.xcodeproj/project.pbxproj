@@ -36,7 +36,7 @@
 		E3370E152B18A4C400BACC1B /* Counting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3370E052B18A4C400BACC1B /* Counting.mp3 */; };
 		E3370E162B18A4C400BACC1B /* snare_D1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E3370E062B18A4C400BACC1B /* snare_D1.wav */; };
 		E3370E192B18ABF000BACC1B /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3370E182B18ABF000BACC1B /* SelectionView.swift */; };
-		E3370E1F2B19E96400BACC1B /* KRSNA-DREAMER.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3370E1E2B19E73500BACC1B /* KRSNA-DREAMER.ttf */; };
+		E36330222B2C9AB400A94076 /* KRSNA-DREAMER.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E36330212B2C9AB400A94076 /* KRSNA-DREAMER.ttf */; };
 		E363EE942B1F1CD500A010A1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E363EE932B1F1CD500A010A1 /* LoginView.swift */; };
 		E363EE972B1F1D1C00A010A1 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = E363EE962B1F1D1C00A010A1 /* Functions */; };
 		E363EE992B1F1D1C00A010A1 /* GoTrue in Frameworks */ = {isa = PBXBuildFile; productRef = E363EE982B1F1D1C00A010A1 /* GoTrue */; };
@@ -53,7 +53,6 @@
 		E363EEB32B20932000A010A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E363EEAF2B20932000A010A1 /* ContentView.swift */; };
 		E363EEB42B20932000A010A1 /* QuestionTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E363EEB02B20932000A010A1 /* QuestionTree.swift */; };
 		E363EEB72B21F56300A010A1 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E363EEB62B21F56300A010A1 /* KeychainSwift */; };
-		E3A74EDE2B1CCCA600B20EDC /* KRSNA-DREAMER.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3A74EDD2B1CCCA600B20EDC /* KRSNA-DREAMER.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,7 +82,7 @@
 		E3370E052B18A4C400BACC1B /* Counting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Counting.mp3; sourceTree = "<group>"; };
 		E3370E062B18A4C400BACC1B /* snare_D1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = snare_D1.wav; sourceTree = "<group>"; };
 		E3370E182B18ABF000BACC1B /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectionView.swift; path = Main/SelectionView.swift; sourceTree = SOURCE_ROOT; };
-		E3370E1E2B19E73500BACC1B /* KRSNA-DREAMER.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KRSNA-DREAMER.ttf"; sourceTree = "<group>"; };
+		E36330212B2C9AB400A94076 /* KRSNA-DREAMER.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KRSNA-DREAMER.ttf"; sourceTree = "<group>"; };
 		E363EE932B1F1CD500A010A1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E363EEA32B1F252A00A010A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E363EEA52B1F4BB400A010A1 /* LevelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsView.swift; sourceTree = "<group>"; };
@@ -93,7 +92,6 @@
 		E363EEAE2B20932000A010A1 /* QuizManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizManager.swift; sourceTree = "<group>"; };
 		E363EEAF2B20932000A010A1 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E363EEB02B20932000A010A1 /* QuestionTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTree.swift; sourceTree = "<group>"; };
-		E3A74EDD2B1CCCA600B20EDC /* KRSNA-DREAMER.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KRSNA-DREAMER.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,8 +199,7 @@
 		E3370E1A2B19E51C00BACC1B /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				E3370E1E2B19E73500BACC1B /* KRSNA-DREAMER.ttf */,
-				E3A74EDD2B1CCCA600B20EDC /* KRSNA-DREAMER.ttf */,
+				E36330212B2C9AB400A94076 /* KRSNA-DREAMER.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -320,12 +317,11 @@
 				E3370E102B18A4C400BACC1B /* closed_hi_hat_F#1.wav in Resources */,
 				E3370E0C2B18A4C400BACC1B /* alphabet.mp3 in Resources */,
 				E3370E112B18A4C400BACC1B /* bass_drum_C1.wav in Resources */,
+				E36330222B2C9AB400A94076 /* KRSNA-DREAMER.ttf in Resources */,
 				E3370E152B18A4C400BACC1B /* Counting.mp3 in Resources */,
 				E3370E072B18A4C400BACC1B /* Guitar.mp3 in Resources */,
 				E3370E0D2B18A4C400BACC1B /* mid_tom_B1.wav in Resources */,
 				E3370E132B18A4C400BACC1B /* Piano.mp3 in Resources */,
-				E3370E1F2B19E96400BACC1B /* KRSNA-DREAMER.ttf in Resources */,
-				E3A74EDE2B1CCCA600B20EDC /* KRSNA-DREAMER.ttf in Resources */,
 				E3370DDA2B187F9600BACC1B /* Preview Assets.xcassets in Resources */,
 				E3370DD72B187F9600BACC1B /* Assets.xcassets in Resources */,
 				E3370E082B18A4C400BACC1B /* clap_D#1.wav in Resources */,

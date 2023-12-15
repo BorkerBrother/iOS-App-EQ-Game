@@ -137,9 +137,8 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
     func startGame() {
         
         isGameActive = true
-        timer?.invalidate()
         correctBand = Int.random(in: 1...5)
-        
+        print("test5")
         switch correctBand {
         case 1:
             data.gain1 += 10 // Beispielwert für die Erhöhung
@@ -178,10 +177,10 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
     
     // FINISH GAME AFTER X ROUNDS
     func finishGame() {
+        print("test4")
         score = 0
         isGameActive = false
         alertMessage = "Spiel beendet! Dein Score: \(totalScore)"
-        resetBandGain(band: correctBand)
         resetGame()
         currentRound = 0
         player.stop()
@@ -189,9 +188,9 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         nickname = loadname() ?? "default"
         Task {
             await authenticationManager.fetchCurrentScore(nickname: nickname)
-            let currentScore = await authenticationManager.fetchCurrentScore(nickname: nickname)
+            let currentScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
             // Update score if it's higher
-            await authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: currentScore)
+            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: currentScore)
             DispatchQueue.main.async {
                 self.authenticationManager.userScore = currentScore
             }
@@ -200,11 +199,12 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
          
     // RESET GAME
     func resetGame() {
-            isGameActive = false
-            timer?.invalidate()
-            timer = nil
-            resetBandGain(band: correctBand)
-        }
+        isGameActive = false
+        timer?.invalidate()
+        timer = nil
+        resetBandGain(band: correctBand)
+        timerCountdown = 20 // Setzen Sie den Timer auf den Anfangswert zurück
+    }
     
     func updateGameStats() {
         gamesPlayed += 1
@@ -220,11 +220,13 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
             } else {
                 // Spiel beenden und Ergebnisse anzeigen
                     finishGame()
+                print("test3")
             }
         }
 
     // CHECK IF CORRECT
     func checkAnswer(_ guessedBand: Int) -> Bool {
+        
         let isCorrect = guessedBand == correctBand
         if isCorrect {
             updateTotalScore()
@@ -232,7 +234,8 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         } else {
             alertMessage = "Leider falsch. Versuche es nochmal."
         }
-        showAlert = true // Zeige den Alert unabhängig davon, ob die Antwort richtig oder falsch ist
+        showAlert = true
+         // Zeige den Alert unabhängig davon, ob die Antwort richtig oder falsch ist
         nextRound() // Startet die nächste Runde
         return isCorrect
     }
@@ -241,15 +244,16 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
     func updateTotalScore() {
         nickname = loadname() ?? "default"
         Task {
-            let viewScore = await authenticationManager.fetchCurrentScore(nickname: nickname)
-            totalScore = authenticationManager.userScore + score
+            let viewScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
+            totalScore = self.authenticationManager.userScore + score
 
-            await authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
+            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
             
             DispatchQueue.main.async {
                 self.authenticationManager.userScore = self.totalScore
                 print("Aktualisierter Score: \(self.totalScore)")
             }
+            print("test2")
         }
     }
     
@@ -320,7 +324,6 @@ struct GraphicEqualizerView: View {
                         isGamePlaying = true
                     }
                     
-                    isGamePlaying.toggle()
                 }) {
                     Text(isGamePlaying ? "stop game" : "start game")
                         .font(.custom("KRSNA-DREAMER", size: 20))
@@ -352,7 +355,7 @@ struct GraphicEqualizerView: View {
                     .foregroundColor(.white)
                     .font(.custom("KRSNA-DREAMER", size: 20))
 
-            if conductor.isGameActive {
+            
                 // Anzeigen der aktuellen Runde und verbleibenden Zeit
                 Text("Round: \(conductor.currentRound) / \(conductor.totalRounds)")
                     .foregroundColor(.white)
@@ -360,7 +363,7 @@ struct GraphicEqualizerView: View {
                 Text("Time Out: \(conductor.timerCountdown)")
                     .foregroundColor(.white)
 
-            }
+            
 
             HStack(spacing: 20) {
                         ForEach(Array(zip(["a", "b", "c", "d", "e"], conductor.bandValues.enumerated())), id: \.0) { (bandLetter, band) in
@@ -400,9 +403,10 @@ struct GraphicEqualizerView: View {
             
             FFTView(conductor.fader)
             
-        }.onChange(of: conductor.isGameActive) { newValue in
-            isGamePlaying = newValue // Aktualisiere isGamePlaying basierend auf isGameActive im Conductor
         }
+//        .onChange(of: conductor.isGameActive) { newValue in
+//            isGamePlaying = newValue // Aktualisiere isGamePlaying basierend auf isGameActive im Conductor
+//        }
         
 
         .onChange(of: conductor.showAlert) { showAlert in

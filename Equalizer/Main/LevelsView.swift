@@ -12,9 +12,9 @@ import KeychainSwift
 
 
 struct LevelsView: View {
-    @ObservedObject var conductor: GraphicEqualizerConductor
+    @EnvironmentObject var conductor: GraphicEqualizerConductor
     @State private var nickname: String = ""
-    @ObservedObject var authenticationManager: AuthenticationManager
+    @EnvironmentObject var authenticationManager: AuthenticationManager
 
     var body: some View {
         VStack(spacing: 20) {

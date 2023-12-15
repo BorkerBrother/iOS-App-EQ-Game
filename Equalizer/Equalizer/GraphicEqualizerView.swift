@@ -20,59 +20,25 @@ struct GraphicEqualizerData {
 // Equalizer class
 class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
     
-    @ObservedObject var authenticationManager = AuthenticationManager()
+    var authenticationManager: AuthenticationManager
     
+    // Audio
     let fader: Fader
     let engine = AudioEngine()
     let player = AudioPlayer()
     let buffer: AVAudioPCMBuffer
-    var nickname: String = ""
-
+    
+    
     let filterBand1: EqualizerFilter
     let filterBand2: EqualizerFilter
     let filterBand3: EqualizerFilter
     let filterBand4: EqualizerFilter
     let filterBand5: EqualizerFilter
     
-
-    @Published var currentRound = 0
-    let totalRounds = 5
-    var selectedBand: Int?
-    
     @Published var bandValues = [50, 125, 400, 1000, 4000]
     
-    var totalScoreAccumulated = 0
-    @Published var totalScore = 0
-    @Published var score = 100
-    
-    let pointsRequiredForNextLevel = 1500
-    private let maxLevel = 10
-    private let maxScore = 100
-    private var isGamePlaying = false
-    
-    
-    var averageScore: Double {
-            return gamesPlayed > 0 ? Double(totalScoreAccumulated) / Double(gamesPlayed) : 0
-        }
+    var selectedBand: Int?
 
-    @Published var isGameActive = false
-    @Published var guessedBand: Int?
-    private var correctBand: Int?
-
-    @Published var showAlert = false
-    @Published var alertMessage = ""
-
-    @Published var gamesPlayed = 0
-    @Published var currentLevel = 1
-    
-    
-    private let maxTime = 20.0 // Maximale Zeit in Sekunden
-    
-    @Published var timerCountdown = 10 // Setze den Timer auf 10 Sekunden
-    var timer: Timer?
-    
-    
-    
     @Published var data = GraphicEqualizerData() {
         didSet {
             filterBand1.gain = data.gain1
@@ -82,8 +48,40 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
             filterBand5.gain = data.gain5
         }
     }
+    
+    //PLAYER
+    var nickname: String = ""
+    var totalScoreAccumulated = 0
+    @Published var totalScore = 0
+    @Published var score = 100
+    
+    // GAME
+    @Published var currentRound = 0
+    @Published var isGameActive = false
+    @Published var guessedBand: Int?
+    private var correctBand: Int?
+    let totalRounds = 5
+    @Published var gamesPlayed = 0
+    @Published var currentLevel = 1
+    @Published var achievements: [String] = []
+    
+    // TIMER
+    var timer: Timer?
+    private let maxTime = 20.0 // Maximale Zeit in Sekunden
+    @Published var timerCountdown = 10 // Setze den Timer auf 10 Sekunden
+    
+    // LEVEL
+    let pointsRequiredForNextLevel = 1500
+    private let maxLevel = 10
+    private let maxScore = 100
+    
 
-    init() {
+    // MESSAGE
+    @Published var showAlert = false
+    @Published var alertMessage = ""
+    
+    
+    init(authenticationManager: AuthenticationManager) {
         buffer = Cookbook.sourceBuffer
         player.buffer = buffer
         player.isLooping = true
@@ -97,45 +95,49 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         fader = Fader(filterBand5, gain: 0.4)
         engine.output = fader
         
+        self.authenticationManager = authenticationManager
     }
     
+    // START ENGINE
     func start() {
-            do {
-                try engine.start()
-            } catch {
-                print("AudioEngine konnte nicht gestartet werden: \(error)")
-            }
+        do {
+            try engine.start()
+        } catch {
+            print("AudioEngine konnte nicht gestartet werden: \(error)")
         }
+    }
 
+    // STOP GAME
     func stop() {
         engine.stop()
     }
 
+    // GAME INTRODUCTION
     func startGameIntroduction() {
-            alertMessage = "Game starts in 5 seconds"
-            showAlert = true
-            isGameActive = true
-            timerCountdown = 5 // Setze den Timer auf 20 Sekunden
-
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-                self?.countdownBeforeGameStart()
-            }
+        alertMessage = "Game starts in 5 seconds"
+        showAlert = true
+        isGameActive = true
+        timerCountdown = 5 // Setze den Timer auf 20 Sekunden
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.countdownBeforeGameStart()
         }
+    }
     
+    // COUNTDOWN
     func countdownBeforeGameStart() {
-            if timerCountdown > 0 {
-                timerCountdown -= 1
-            } else {
-                timer?.invalidate()
-                startGame()
-            }
+        if timerCountdown > 0 {
+            timerCountdown -= 1
+        } else {
+            timer?.invalidate()
+            startGame()
         }
+    }
     
+    // START GAME
     func startGame() {
         
         isGameActive = true
         timer?.invalidate()
-        
         correctBand = Int.random(in: 1...5)
         
         switch correctBand {
@@ -153,7 +155,6 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
             break
         }
         
-        
         score = maxScore
         timerCountdown = 20 // Setze den Timer auf 20 Sekunden
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
@@ -161,47 +162,43 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         }
     }
     
+    // TIMER UPDATE & SCORE UPDATE
     func updateTimer() {
-            if timerCountdown > 0 {
-                timerCountdown -= 1
-                // Aktualisiere die Punktzahl
-                score = Int(Double(maxScore) * (Double(timerCountdown) / maxTime))
-            } else {
-                timer?.invalidate()
-                timer = nil
-                nextRound()
-            }
+        if timerCountdown > 0 {
+            timerCountdown -= 1
+            // Aktualisiere die Punktzahl
+            score = Int(Double(maxScore) * (Double(timerCountdown) / maxTime))
+        } else {
+            timer?.invalidate()
+            timer = nil
+            nextRound()
         }
+    }
     
     
-    func finishGame()  {
+    // FINISH GAME AFTER X ROUNDS
+    func finishGame() {
         score = 0
         isGameActive = false
-        showAlert = true
         alertMessage = "Spiel beendet! Dein Score: \(totalScore)"
-        showAlert = true
         resetBandGain(band: correctBand)
         resetGame()
         currentRound = 0
         player.stop()
-        
-        // Hier prüfen Sie, ob der erzielte Score ein neuer Highscore ist
-        //print(authenticationManager)
+
         nickname = loadname() ?? "default"
-        print(nickname)
-        if authenticationManager.userScore < totalScore {
-            Task {
-                await authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
+        Task {
+            await authenticationManager.fetchCurrentScore(nickname: nickname)
+            let currentScore = await authenticationManager.fetchCurrentScore(nickname: nickname)
+            // Update score if it's higher
+            await authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: currentScore)
+            DispatchQueue.main.async {
+                self.authenticationManager.userScore = currentScore
             }
         }
-                
     }
-                
-
-            
-            
-        
-    
+         
+    // RESET GAME
     func resetGame() {
             isGameActive = false
             timer?.invalidate()
@@ -209,20 +206,12 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
             resetBandGain(band: correctBand)
         }
     
-    @Published var achievements: [String] = []
-
-    func checkForAchievements() {
-        // Beispiel: Füge einen Erfolg hinzu, wenn ein bestimmter Meilenstein erreicht wird
-        if gamesPlayed == 10 {
-            achievements.append("10 Spiele gespielt!")
-        }
-    }
-
     func updateGameStats() {
         gamesPlayed += 1
         totalScoreAccumulated += score
     }
 
+    
     func nextRound() {
             if currentRound < totalRounds {
                 currentRound += 1
@@ -230,34 +219,41 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
                 startGame() // Startet die nächste Runde
             } else {
                 // Spiel beenden und Ergebnisse anzeigen
-                
                     finishGame()
-                
             }
         }
 
+    // CHECK IF CORRECT
     func checkAnswer(_ guessedBand: Int) -> Bool {
         let isCorrect = guessedBand == correctBand
-        alertMessage = isCorrect ? "Richtig!" : "Leider falsch."
-        if !showAlert {
-                showAlert = true
-            }
-        
         if isCorrect {
             updateTotalScore()
+            alertMessage = "Richtig! Dein Score: \(totalScore)"
+        } else {
+            alertMessage = "Leider falsch. Versuche es nochmal."
         }
+        showAlert = true // Zeige den Alert unabhängig davon, ob die Antwort richtig oder falsch ist
         nextRound() // Startet die nächste Runde
-        
-
         return isCorrect
     }
     
-    
+    // UPODATE SCORE IF Correct Answer
     func updateTotalScore() {
-            totalScore += score
+        nickname = loadname() ?? "default"
+        Task {
+            let viewScore = await authenticationManager.fetchCurrentScore(nickname: nickname)
+            totalScore = authenticationManager.userScore + score
+
+            await authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
             
+            DispatchQueue.main.async {
+                self.authenticationManager.userScore = self.totalScore
+                print("Aktualisierter Score: \(self.totalScore)")
+            }
         }
+    }
     
+    // RESET BAND GAIN
     private func resetBandGain(band: Int?) {
         guard let band = band else { return }
 
@@ -278,33 +274,43 @@ class GraphicEqualizerConductor: ObservableObject, ProcessesPlayerInput {
         }
     }
     
+    
+    // GAME GOALS
+    func checkForAchievements() {
+        // Beispiel: Füge einen Erfolg hinzu, wenn ein bestimmter Meilenstein erreicht wird
+        if gamesPlayed == 10 {
+            achievements.append("10 Spiele gespielt!")
+        }
+    }
+    
 }
 
 
 struct GraphicEqualizerView: View {
-    @ObservedObject var conductor = GraphicEqualizerConductor()
     @State private var isGamePlaying = false
     @State private var isShowingAlert = false
-    @EnvironmentObject var authenticationManager: AuthenticationManager
     
+    @EnvironmentObject var authenticationManager: AuthenticationManager
+    @EnvironmentObject var conductor: GraphicEqualizerConductor
 
+
+    
     var body: some View {
         VStack {
-            Text("Punktzahl: \(conductor.score)")
+            Text("Punktzahl: \(conductor.score)"  )
                 .foregroundColor(.white)
-            Text("Score: \(conductor.totalScore)")
+
+            Text("Score: \(authenticationManager.userScore)")
                 .foregroundColor(.white)
-            
+                
             
             PlayerControls(conductor: conductor)
-                
             HStack {
                 Button(action: {
                     if isGamePlaying {
                         // Stoppe das Spiel
                         conductor.player.stop()
                         conductor.resetGame()
-                        conductor.finishGame()
                         isGamePlaying = false
                         // Weitere Aktionen zum Stoppen des Spiels
                     } else {
@@ -328,8 +334,6 @@ struct GraphicEqualizerView: View {
             }
             .padding()
 
-            
-            
             /////////  DEBUG MODUS //////
             
 //            HStack {
@@ -350,7 +354,7 @@ struct GraphicEqualizerView: View {
 
             if conductor.isGameActive {
                 // Anzeigen der aktuellen Runde und verbleibenden Zeit
-                Text("Round: \(conductor.currentRound)  \(conductor.totalRounds)")
+                Text("Round: \(conductor.currentRound) / \(conductor.totalRounds)")
                     .foregroundColor(.white)
                 
                 Text("Time Out: \(conductor.timerCountdown)")
@@ -400,6 +404,7 @@ struct GraphicEqualizerView: View {
             isGamePlaying = newValue // Aktualisiere isGamePlaying basierend auf isGameActive im Conductor
         }
         
+
         .onChange(of: conductor.showAlert) { showAlert in
             if showAlert {
                 isShowingAlert = true
@@ -413,6 +418,7 @@ struct GraphicEqualizerView: View {
         .background(Color(uiColor: .black))
         .onAppear {
             conductor.start()
+            
         }
         .onDisappear {
             conductor.stop()
@@ -438,11 +444,3 @@ struct GraphicEqualizerView: View {
     }
 }
 
-
-
-
-struct GraphicEqualizer_Preview: PreviewProvider {
-    static var previews: some View {
-        GraphicEqualizerView()
-    }
-}

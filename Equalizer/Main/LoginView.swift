@@ -38,7 +38,7 @@ struct LoginView: View {
     @State private var password = ""
     @Binding var isUserLoggedIn: Bool
     
-    var authenticationManager: AuthenticationManager
+    @EnvironmentObject var authenticationManager: AuthenticationManager
 
     var body: some View {
         VStack {
@@ -79,7 +79,8 @@ class AuthenticationManager: ObservableObject {
 
     init() {
         client = SupabaseClient(supabaseURL: URL(string: "https://duvyxgjyqvxylnxxhmqa.supabase.co")!, supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1dnl4Z2p5cXZ4eWxueHhobXFhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDA5ODkwOTAsImV4cCI6MjAxNjU2NTA5MH0.M4o8SDCOThCnDGWEgf_9B-OdZ4WkuZHusas__uawnyA")
-
+        
+        
     }
 
     func login(nickname: String, password: String) async {
@@ -151,6 +152,7 @@ class AuthenticationManager: ObservableObject {
                         if !updateResponse.data.isEmpty {
                             DispatchQueue.main.async {
                                 self.userScore = newScore
+                                print("test" ,(self.userScore))
                             }
                         } else {
                             print("Fehler beim Aktualisieren des Scores: ")
@@ -169,4 +171,26 @@ class AuthenticationManager: ObservableObject {
         }
     }
     
+    // In AuthenticationManager
+    func fetchCurrentScore(nickname: String) async -> Int {
+        do {
+            let response = try await client.database.from("Users")
+                .select("score")
+                .eq("nickname", value: nickname)
+                .single()
+                .execute()
+
+            let data = response.data
+                let user = try JSONDecoder().decode(User.self, from: data)
+                DispatchQueue.main.async {
+                    self.userScore = user.score
+                
+            }
+        } catch {
+            print("Fehler beim Abrufen des aktuellen Scores: \(error)")
+        }
+        return 0
+    }
+    
+  
 }

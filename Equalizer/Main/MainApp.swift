@@ -8,17 +8,17 @@ struct EqualizerApp: App {
     
     @State private var selectedTab: Int = 0
     @StateObject var authenticationManager = AuthenticationManager() // Erstellen Sie das Objekt einmal hier
+    @StateObject var equalizerClass = EqualizerClass()
     
     var body: some Scene {
         WindowGroup {
             
-            let conductor = GraphicEqualizerConductor(authenticationManager: authenticationManager)
             if authenticationManager.isUserLoggedIn {
                 TabView(selection: $selectedTab) {
                     
                     GraphicEqualizerView()
                         .environmentObject(authenticationManager) // Verwenden Sie die gleiche Instanz hier
-                        .environmentObject(conductor)
+                        .environmentObject(equalizerClass)
                         .tabItem {
                             Image(systemName: "music.note")
                             Text("Music")
@@ -27,7 +27,7 @@ struct EqualizerApp: App {
                     
                     LevelsView()
                         .environmentObject(authenticationManager) // Und hier
-                        .environmentObject(conductor)
+                        .environmentObject(equalizerClass)
                         .tabItem {
                             Image(systemName: "chart.bar")
                             Text("Levels")

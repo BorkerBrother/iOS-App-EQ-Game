@@ -12,21 +12,20 @@ import KeychainSwift
 
 
 struct LevelsView: View {
-    @EnvironmentObject var conductor: GraphicEqualizerConductor
+    @EnvironmentObject var conductor: EqualizerClass
     @State private var nickname: String = ""
-    @EnvironmentObject var authenticationManager: AuthenticationManager
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Nickname: \(nickname)")
+            Text("Name: \(nickname)")
                             .font(.title)
                             .fontWeight(.bold)
             
-            Text("Aktuelles Level: \(conductor.currentLevel)")
+            Text("Level: \(conductor.currentLevel)")
                 .font(.title)
                 .fontWeight(.bold)
             
-            Text("Score: \(authenticationManager.userScore) / \(conductor.pointsRequiredForNextLevel)")
+            Text("Score: \(conductor.totalScore) / \(conductor.pointsRequiredForNextLevel)")
                             .font(.headline)
             
             ProgressView(value: Double(conductor.totalScore), total: Double(conductor.pointsRequiredForNextLevel))

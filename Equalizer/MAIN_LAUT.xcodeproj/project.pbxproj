@@ -53,6 +53,8 @@
 		E363EEB32B20932000A010A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E363EEAF2B20932000A010A1 /* ContentView.swift */; };
 		E363EEB42B20932000A010A1 /* QuestionTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E363EEB02B20932000A010A1 /* QuestionTree.swift */; };
 		E363EEB72B21F56300A010A1 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E363EEB62B21F56300A010A1 /* KeychainSwift */; };
+		E3D8BFA72B2D91E900808D55 /* authenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D8BFA62B2D91E900808D55 /* authenticationManager.swift */; };
+		E3D8BFA92B2D932C00808D55 /* EqualizerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		E363EEAE2B20932000A010A1 /* QuizManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizManager.swift; sourceTree = "<group>"; };
 		E363EEAF2B20932000A010A1 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E363EEB02B20932000A010A1 /* QuestionTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTree.swift; sourceTree = "<group>"; };
+		E3D8BFA62B2D91E900808D55 /* authenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticationManager.swift; sourceTree = "<group>"; };
+		E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualizerClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,7 @@
 		E3370DD12B187F9500BACC1B /* Equalizer */ = {
 			isa = PBXGroup;
 			children = (
+				E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */,
 				E363EEAA2B1F712400A010A1 /* FFTView.swift */,
 				E3370DD42B187F9500BACC1B /* GraphicEqualizerView.swift */,
 				E3370DEC2B18A32E00BACC1B /* Cookbook.swift */,
@@ -192,6 +197,7 @@
 				E363EE932B1F1CD500A010A1 /* LoginView.swift */,
 				E363EEA32B1F252A00A010A1 /* RegistrationView.swift */,
 				E363EEA52B1F4BB400A010A1 /* LevelsView.swift */,
+				E3D8BFA62B2D91E900808D55 /* authenticationManager.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 			files = (
 				E3370DEF2B18A3CC00BACC1B /* PlayerControls.swift in Sources */,
 				E3370E192B18ABF000BACC1B /* SelectionView.swift in Sources */,
+				E3D8BFA72B2D91E900808D55 /* authenticationManager.swift in Sources */,
 				E3370DD52B187F9500BACC1B /* GraphicEqualizerView.swift in Sources */,
 				E363EEAB2B1F712400A010A1 /* FFTView.swift in Sources */,
 				E363EEA62B1F4BB400A010A1 /* LevelsView.swift in Sources */,
@@ -348,6 +355,7 @@
 				E363EEB12B20932000A010A1 /* QuestionView.swift in Sources */,
 				E363EEA92B1F579100A010A1 /* UserAuthentication.swift in Sources */,
 				E3370DED2B18A32E00BACC1B /* Cookbook.swift in Sources */,
+				E3D8BFA92B2D932C00808D55 /* EqualizerClass.swift in Sources */,
 				E3370DF52B18A43000BACC1B /* NavigationHelpers.swift in Sources */,
 				E363EEB22B20932000A010A1 /* QuizManager.swift in Sources */,
 				E363EEB32B20932000A010A1 /* ContentView.swift in Sources */,

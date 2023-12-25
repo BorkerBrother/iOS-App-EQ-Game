@@ -165,5 +165,20 @@ class AuthenticationManager: ObservableObject {
         return 0
     }
     
+    
+    func fetchLeaderboard() async -> [User] {
+        do {
+            let response = try await client.database.from("Users")
+                .select()
+                .order("score", ascending: false)
+                .execute()
+
+            let users = try JSONDecoder().decode([User].self, from: response.data)
+            return users
+        } catch {
+            print("Fehler beim Abrufen der Bestenliste: \(error.localizedDescription)")
+            return []
+        }
+    }
   
 }

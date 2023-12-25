@@ -260,6 +260,9 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
         }
     }
     
+    
+    
+
     // RESET BAND GAIN
     private func resetBandGain(band: Int?) {
         guard let band = band else { return }

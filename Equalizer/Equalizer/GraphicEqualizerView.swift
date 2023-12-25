@@ -18,6 +18,7 @@ struct GraphicEqualizerView: View {
         VStack {
             Text("Punktzahl: \(conductor.score)"  )
                 .foregroundColor(.white)
+    
 
             Text("Score: \(conductor.totalScore)")
                 .foregroundColor(.white)
@@ -137,6 +138,8 @@ struct GraphicEqualizerView: View {
         .background(Color(uiColor: .black))
         .onAppear {
             conductor.start()
+//            conductor.updateTotalScore()
+            
             
         }
         .onDisappear {

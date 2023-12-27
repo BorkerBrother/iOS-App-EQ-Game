@@ -16,14 +16,13 @@ struct GraphicEqualizerView: View {
     
     var body: some View {
         VStack {
-            Text("Punktzahl: \(conductor.score)"  )
-                .foregroundColor(.white)
-    
-
-            Text("Score: \(conductor.totalScore)")
-                .foregroundColor(.white)
-                
-            
+//            Text("Punktzahl: \(conductor.score)"  )
+//                .foregroundColor(.white)
+//    
+//
+//            Text("Score: \(conductor.totalScore)")
+//                .foregroundColor(.white)
+//                
             PlayerControls(conductor: conductor)
             HStack {
                 Button(action: {
@@ -138,7 +137,7 @@ struct GraphicEqualizerView: View {
         .background(Color(uiColor: .black))
         .onAppear {
             conductor.start()
-//            conductor.updateTotalScore()
+            conductor.updateTotalScore()
             
             
         }

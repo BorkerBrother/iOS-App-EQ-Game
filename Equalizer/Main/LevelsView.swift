@@ -41,6 +41,7 @@ struct LevelsView: View {
                     .foregroundColor(.white)
             }
             
+            
             Text("Erfolge: \(conductor.achievements.joined(separator: ", "))")
                 .font(.caption)
                 .foregroundColor(.white)
@@ -67,7 +68,6 @@ struct LevelsView: View {
                             .padding()
                             .background(Color.white)
                         }
-                    
                 }
             }
             .padding()
@@ -79,21 +79,21 @@ struct LevelsView: View {
         .background(Color.black) // Änderung auf schwarzen Hintergrund
         .cornerRadius(12)
         .shadow(radius: 10)
-        .onAppear {
-            loadNickname()
-            Task {
-                leaderboard = await conductor.authenticationManager.fetchLeaderboard()
-            }
-        }
+//        .onAppear {
+//            loadNickname()
+//            Task {
+//                leaderboard = await conductor.authenticationManager.fetchLeaderboard()
+//            }
+//        }
         .background(Color.black) // Hintergrund für die gesamte Liste
 
     }
-
-    private func loadNickname() {
-        let keychain = KeychainSwift()
-        nickname = keychain.get("userNickname") ?? "Unbekannt"
-    }
-    
+//
+//    private func loadNickname() {
+//        let keychain = KeychainSwift()
+//        nickname = keychain.get("userNickname") ?? "Unbekannt"
+//    }
+//    
     
     
 }

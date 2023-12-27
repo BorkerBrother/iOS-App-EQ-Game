@@ -26,7 +26,7 @@ struct GraphicEqualizerData {
 // Equalizer class
 class EqualizerClass: ObservableObject, ProcessesPlayerInput {
     
-    @ObservedObject var authenticationManager = AuthenticationManager()
+    //@ObservedObject var authenticationManager = AuthenticationManager()
     
     // Audio
     let fader: Fader
@@ -188,16 +188,16 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
         currentRound = 0
         player.stop()
 
-        nickname = loadname() ?? "default"
-        Task {
-            await authenticationManager.fetchCurrentScore(nickname: nickname)
-            let currentScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
-            // Update score if it's higher
-            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: currentScore)
-            DispatchQueue.main.async {
-                self.authenticationManager.userScore = currentScore
-            }
-        }
+//        nickname = loadname() ?? "default"
+//        Task {
+//            await authenticationManager.fetchCurrentScore(nickname: nickname)
+//            let currentScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
+//            // Update score if it's higher
+//            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: currentScore)
+//            DispatchQueue.main.async {
+//                self.authenticationManager.userScore = currentScore
+//            }
+//        }
     }
          
     // RESET GAME
@@ -245,19 +245,22 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
     
     // UPODATE SCORE IF Correct Answer
     func updateTotalScore() {
-        nickname = loadname() ?? "default"
-        Task {
-            let viewScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
-            totalScore = self.authenticationManager.userScore + score
-
-            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
-            
-            DispatchQueue.main.async {
-                self.authenticationManager.userScore = self.totalScore
-                print("Aktualisierter Score: \(self.totalScore)")
-            }
-            print("test2")
-        }
+        
+        // ONLY IF ONLINE!!
+        
+//        nickname = loadname() ?? "default"
+//        Task {
+//            let viewScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
+//            totalScore = self.authenticationManager.userScore + score
+//
+//            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
+//            
+//            DispatchQueue.main.async {
+//                self.authenticationManager.userScore = self.totalScore
+//                print("Aktualisierter Score: \(self.totalScore)")
+//            }
+//            print("test2")
+//        }
     }
     
     

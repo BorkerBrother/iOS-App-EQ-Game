@@ -150,20 +150,28 @@ class AuthenticationManager: ObservableObject {
             let response = try await client.database.from("Users")
                 .select("score")
                 .eq("nickname", value: nickname)
-                .single()
                 .execute()
 
             let data = response.data
-                let user = try JSONDecoder().decode(User.self, from: data)
+            let users = try JSONDecoder().decode([User].self, from: data)
+
+            if let user = users.first {
                 DispatchQueue.main.async {
                     self.userScore = user.score
+                }
+                return user.score
                 
+            } else {
+                print("Benutzer nicht gefunden.")
+                print("Fetching score for nickname: \(nickname)")
+                return 0
             }
         } catch {
             print("Fehler beim Abrufen des aktuellen Scores: \(error)")
+            return 0
         }
-        return 0
     }
+
     
     
     func fetchLeaderboard() async -> [User] {

@@ -1,4 +1,5 @@
 import SwiftUI
+import os
 
 struct LoginView: View {
     @State private var nickname = ""
@@ -6,6 +7,7 @@ struct LoginView: View {
     @Binding var isUserLoggedIn: Bool
     
     @EnvironmentObject var authenticationManager: AuthenticationManager
+
 
     var body: some View {
         VStack {

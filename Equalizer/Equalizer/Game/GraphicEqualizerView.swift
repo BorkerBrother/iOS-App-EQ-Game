@@ -16,13 +16,6 @@ struct GraphicEqualizerView: View {
     
     var body: some View {
         VStack {
-//            Text("Punktzahl: \(conductor.score)"  )
-//                .foregroundColor(.white)
-//    
-//
-//            Text("Score: \(conductor.totalScore)")
-//                .foregroundColor(.white)
-//                
             PlayerControls(conductor: conductor)
             HStack {
                 Button(action: {
@@ -53,16 +46,6 @@ struct GraphicEqualizerView: View {
             .padding()
 
             /////////  DEBUG MODUS //////
-            
-//            HStack {
-//                ForEach(1...5, id: \.self) { band in
-//                    CookbookKnob(text: "band ",
-//                                 parameter: binding(for: band),
-//                                 range: 0 ... 20).padding(5)
-//                }
-//            }
-//            .background(Color(uiColor: .white))
-//            .padding(5)
 
             
                 Text("wich frequency is pushed?")
@@ -119,25 +102,21 @@ struct GraphicEqualizerView: View {
             FFTView(conductor.fader)
             
         }
-//        .onChange(of: conductor.isGameActive) { newValue in
-//            isGamePlaying = newValue // Aktualisiere isGamePlaying basierend auf isGameActive im Conductor
-//        }
+
         
 
-        .onChange(of: conductor.showAlert) { showAlert in
-            if showAlert {
-                isShowingAlert = true
-                // Setze showAlert im Conductor zurück, um wiederholte Alerts zu vermeiden
-                conductor.showAlert = false
-            }
-        }
+
 //        .alert(isPresented: $isShowingAlert) {
 //            Alert(title: Text("SHOW BESTENLIOSTE"), message: Text(conductor.alertMessage), dismissButton: .default(Text("OK")))
 //        }
         .background(Color(uiColor: .black))
+        
+        .alert(isPresented: $conductor.showAlert) {
+            Alert(title: Text(""), message: Text(conductor.alertMessage), dismissButton: .default(Text("OK")))
+        }
+        
         .onAppear {
             conductor.start()
-            conductor.updateTotalScore()
             
             
         }

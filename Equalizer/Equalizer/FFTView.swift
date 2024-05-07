@@ -159,11 +159,7 @@ public struct FFTView: View {
     }
 }
 
-struct FFTView_Previews: PreviewProvider {
-    static var previews: some View {
-        FFTView(Mixer())
-    }
-}
+
 
 struct AmplitudeBar: View {
     var amplitude: Float

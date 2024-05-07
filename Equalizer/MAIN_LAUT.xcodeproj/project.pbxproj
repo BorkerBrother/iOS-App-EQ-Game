@@ -61,7 +61,7 @@
 /* Begin PBXFileReference section */
 		E3370DCF2B187F9500BACC1B /* MAIN_LAUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAIN_LAUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3370DD22B187F9500BACC1B /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
-		E3370DD42B187F9500BACC1B /* GraphicEqualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphicEqualizerView.swift; path = Equalizer/GraphicEqualizerView.swift; sourceTree = SOURCE_ROOT; };
+		E3370DD42B187F9500BACC1B /* GraphicEqualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GraphicEqualizerView.swift; path = Equalizer/Game/GraphicEqualizerView.swift; sourceTree = SOURCE_ROOT; };
 		E3370DD62B187F9600BACC1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3370DD92B187F9600BACC1B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E3370DEC2B18A32E00BACC1B /* Cookbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cookbook.swift; sourceTree = "<group>"; };
@@ -122,6 +122,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E30EE59B2BEA1DD70094D4CC /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				E3370DD42B187F9500BACC1B /* GraphicEqualizerView.swift */,
+				E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		E3370DC62B187F9500BACC1B = {
 			isa = PBXGroup;
 			children = (
@@ -146,9 +155,8 @@
 		E3370DD12B187F9500BACC1B /* Equalizer */ = {
 			isa = PBXGroup;
 			children = (
-				E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */,
+				E30EE59B2BEA1DD70094D4CC /* Game */,
 				E363EEAA2B1F712400A010A1 /* FFTView.swift */,
-				E3370DD42B187F9500BACC1B /* GraphicEqualizerView.swift */,
 				E3370DEC2B18A32E00BACC1B /* Cookbook.swift */,
 				E3370DEE2B18A3CC00BACC1B /* PlayerControls.swift */,
 				E3370DF22B18A3FB00BACC1B /* CookbookKnob.swift */,
@@ -516,6 +524,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "www.laut-samples.com.LAUT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -547,6 +558,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "www.laut-samples.com.LAUT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

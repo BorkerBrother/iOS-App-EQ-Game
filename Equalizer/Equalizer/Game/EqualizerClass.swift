@@ -26,7 +26,6 @@ struct GraphicEqualizerData {
 // Equalizer class
 class EqualizerClass: ObservableObject, ProcessesPlayerInput {
     
-    //@ObservedObject var authenticationManager = AuthenticationManager()
     
     // Audio
     let fader: Fader
@@ -79,7 +78,7 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
     // LEVEL
     let pointsRequiredForNextLevel = 1500
     private let maxLevel = 10
-    private let maxScore = 100
+    let maxScore = 100
     
 
     // MESSAGE
@@ -183,21 +182,12 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
         print("test4")
         score = 0
         isGameActive = false
-        alertMessage = "Game end! Score: \(totalScore)"
+        alertMessage = "Game end!" // "Score: \(totalScoreAccumulated)"
         resetGame()
         currentRound = 0
         player.stop()
 
-//        nickname = loadname() ?? "default"
-//        Task {
-//            await authenticationManager.fetchCurrentScore(nickname: nickname)
-//            let currentScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
-//            // Update score if it's higher
-//            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: currentScore)
-//            DispatchQueue.main.async {
-//                self.authenticationManager.userScore = currentScore
-//            }
-//        }
+
     }
          
     // RESET GAME
@@ -223,7 +213,7 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
             } else {
                 // Spiel beenden und Ergebnisse anzeigen
                     finishGame()
-                print("test3")
+                //print("test3")
             }
         }
 
@@ -232,36 +222,19 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
         
         let isCorrect = guessedBand == correctBand
         if isCorrect {
-            updateTotalScore()
             alertMessage = "Correct!"
         } else {
             alertMessage = "Wrong!"
         }
         showAlert = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.showAlert = false  // Reset alert state to hide it automatically
+        }
          // Zeige den Alert unabhängig davon, ob die Antwort richtig oder falsch ist
         nextRound() // Startet die nächste Runde
         return isCorrect
     }
-    
-    // UPODATE SCORE IF Correct Answer
-    func updateTotalScore() {
-        
-        // ONLY IF ONLINE!!
-        
-//        nickname = loadname() ?? "default"
-//        Task {
-//            let viewScore = await self.authenticationManager.fetchCurrentScore(nickname: nickname)
-//            totalScore = self.authenticationManager.userScore + score
-//
-//            await self.authenticationManager.updateScoreIfHigher(nickname: nickname, newScore: totalScore)
-//            
-//            DispatchQueue.main.async {
-//                self.authenticationManager.userScore = self.totalScore
-//                print("Aktualisierter Score: \(self.totalScore)")
-//            }
-//            print("test2")
-//        }
-    }
+
     
     
     

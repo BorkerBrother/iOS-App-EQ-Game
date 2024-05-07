@@ -14,54 +14,55 @@ struct EqualizerApp: App {
     var body: some Scene {
         WindowGroup {
             
-            if isUserLoggedIn {
-                TabView(selection: $selectedTab) {
-                    
-                    GraphicEqualizerView()
-                        .environmentObject(equalizerClass)
-                        .tabItem {
-                            Image(systemName: "music.note")
-                            Text("Music")
-                        }
-                        .tag(0)
-                    
-                    LevelsView()
-                        .environmentObject(equalizerClass)
-                        .tabItem {
-                            Image(systemName: "chart.bar")
-                            Text("Levels")
-                        }.tag(3)
-                }
+            //if isUserLoggedIn {
+            TabView(selection: $selectedTab) {
                 
-            } 
+                GraphicEqualizerView()
+                    .environmentObject(equalizerClass)
+                    .tabItem {
+                        Image(systemName: "music.note")
+                        Text("Music")
+                    }
+                    .tag(0)
+                
+                /*LevelsView()
+                 .environmentObject(equalizerClass)
+                 .tabItem {
+                 Image(systemName: "chart.bar")
+                 Text("Levels")
+                 }.tag(3)*/
+            }
             
-            if userOffline {
-                TabView(selection: $selectedTab) {
-                    
-                    GraphicEqualizerView()
-                        .environmentObject(equalizerClass)
-                        .tabItem {
-                            Image(systemName: "music.note")
-                            Text("Music")
-                        }
-                        .tag(0)
-                    // VIEW - LOG IN For Infos
-                    OfflineView()
-                        .environmentObject(equalizerClass)
-                        .tabItem {
-                            Image(systemName: "chart.bar")
-                            Text("Levels")
-                        }.tag(3)
-                }
-            }
-            else {
-                NavigationView {
-                    LoginView(isUserLoggedIn: $isUserLoggedIn)
-                    
-                }
-                
-            }
+            //}
+            
+            /*if userOffline {
+             TabView(selection: $selectedTab) {
+             
+             GraphicEqualizerView()
+             .environmentObject(equalizerClass)
+             .tabItem {
+             Image(systemName: "music.note")
+             Text("Music")
+             }
+             .tag(0)
+             // VIEW - LOG IN For Infos
+             OfflineView()
+             .environmentObject(equalizerClass)
+             .tabItem {
+             Image(systemName: "chart.bar")
+             Text("Levels")
+             }.tag(3)
+             }
+             }
+             else {
+             NavigationView {
+             LoginView(isUserLoggedIn: $isUserLoggedIn)
+             
+             }
+             
+             }
+             }*/
+            
         }
-        
     }
 }

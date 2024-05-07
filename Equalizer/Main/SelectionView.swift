@@ -53,10 +53,3 @@ struct SelectionView: View {
     }
 }
 
-// Preview
-struct SelectionView_Preview: PreviewProvider {
-    static var previews: some View {
-        SelectionView(selectedTab: .constant(0))
-    }
-}
-

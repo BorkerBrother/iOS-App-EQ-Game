@@ -10,6 +10,22 @@ struct PlayerControls: View {
     var conductor: ProcessesPlayerInput
 
     let sources: [[String]] = [
+        
+        ["LAUT Foghorn Demo", "LAUT_Foghorn_Demo.mp3"],
+        ["LAUT Dark Liquid Demo", "LAUT_Dark_Liquid_Demo.mp3"],
+        ["LAUT Serum Demo", "LAUT_Serum_Demo.mp3"],
+        ["LAUT Vital Demo", "LAUT_Vital_Demo.mp3"],
+        ["LAUT Brain Demo", "LAUT_Brain_Demo.mp3"],
+        
+        ["LAUT Bass 1", "LAUT_Bass_1.mp3"],
+        ["LAUT Bass 2", "LAUT_Bass_2.mp3"],
+        
+        ["LAUT Drums 1", "LAUT_Drums_1.mp3"],
+        ["LAUT Drums 2", "LAUT_Drums_2.mp3"],
+        
+        /*
+         ["LAUT Bass 3", "LAUT_Bass_3.mp3"],
+
         ["Bass Synth", "Bass Synth.mp3"],
         ["Drums", "beat.aiff"],
         ["Female Voice", "alphabet.mp3"],
@@ -18,6 +34,8 @@ struct PlayerControls: View {
         ["Piano", "Piano.mp3"],
         ["Strings", "Strings.mp3"],
         ["Synth", "Synth.mp3"],
+        ["Synth", "LAUT_Manta Artist Pack Demo Song.mp3"],*/
+        
     ]
 
     @State var isPlaying = false

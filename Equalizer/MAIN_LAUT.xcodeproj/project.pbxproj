@@ -54,6 +54,17 @@
 		E363EEB42B20932000A010A1 /* QuestionTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E363EEB02B20932000A010A1 /* QuestionTree.swift */; };
 		E363EEB72B21F56300A010A1 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E363EEB62B21F56300A010A1 /* KeychainSwift */; };
 		E39A02892B3B0A81001F4CF6 /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39A02882B3B0A81001F4CF6 /* OfflineView.swift */; };
+		E3C1CC192C2219B900BDC006 /* LAUT_Foghorn_Demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC0E2C2219B700BDC006 /* LAUT_Foghorn_Demo.mp3 */; };
+		E3C1CC1A2C2219B900BDC006 /* LAUT_Bass_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC0F2C2219B800BDC006 /* LAUT_Bass_2.mp3 */; };
+		E3C1CC1B2C2219B900BDC006 /* LAUT_Vital_Demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC102C2219B800BDC006 /* LAUT_Vital_Demo.mp3 */; };
+		E3C1CC1C2C2219B900BDC006 /* LAUT_Drums_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC112C2219B800BDC006 /* LAUT_Drums_1.mp3 */; };
+		E3C1CC1D2C2219B900BDC006 /* LAUT_Brain_Demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC122C2219B800BDC006 /* LAUT_Brain_Demo.mp3 */; };
+		E3C1CC1E2C2219B900BDC006 /* LAUT_Drums_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC132C2219B800BDC006 /* LAUT_Drums_2.mp3 */; };
+		E3C1CC1F2C2219B900BDC006 /* LAUT_Bass_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC142C2219B800BDC006 /* LAUT_Bass_3.mp3 */; };
+		E3C1CC202C2219B900BDC006 /* LAUT_Serum_Demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC152C2219B800BDC006 /* LAUT_Serum_Demo.mp3 */; };
+		E3C1CC212C2219B900BDC006 /* LAUT_Dark_Liquid_Demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC162C2219B800BDC006 /* LAUT_Dark_Liquid_Demo.mp3 */; };
+		E3C1CC222C2219B900BDC006 /* LAUT_Bass_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC172C2219B800BDC006 /* LAUT_Bass_1.mp3 */; };
+		E3C1CC232C2219B900BDC006 /* LAUT_Driving_Hype_Demo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3C1CC182C2219B900BDC006 /* LAUT_Driving_Hype_Demo.mp3 */; };
 		E3D8BFA72B2D91E900808D55 /* authenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D8BFA62B2D91E900808D55 /* authenticationManager.swift */; };
 		E3D8BFA92B2D932C00808D55 /* EqualizerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +107,17 @@
 		E363EEAF2B20932000A010A1 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E363EEB02B20932000A010A1 /* QuestionTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTree.swift; sourceTree = "<group>"; };
 		E39A02882B3B0A81001F4CF6 /* OfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineView.swift; sourceTree = "<group>"; };
+		E3C1CC0E2C2219B700BDC006 /* LAUT_Foghorn_Demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Foghorn_Demo.mp3; sourceTree = "<group>"; };
+		E3C1CC0F2C2219B800BDC006 /* LAUT_Bass_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Bass_2.mp3; sourceTree = "<group>"; };
+		E3C1CC102C2219B800BDC006 /* LAUT_Vital_Demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Vital_Demo.mp3; sourceTree = "<group>"; };
+		E3C1CC112C2219B800BDC006 /* LAUT_Drums_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Drums_1.mp3; sourceTree = "<group>"; };
+		E3C1CC122C2219B800BDC006 /* LAUT_Brain_Demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Brain_Demo.mp3; sourceTree = "<group>"; };
+		E3C1CC132C2219B800BDC006 /* LAUT_Drums_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Drums_2.mp3; sourceTree = "<group>"; };
+		E3C1CC142C2219B800BDC006 /* LAUT_Bass_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Bass_3.mp3; sourceTree = "<group>"; };
+		E3C1CC152C2219B800BDC006 /* LAUT_Serum_Demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Serum_Demo.mp3; sourceTree = "<group>"; };
+		E3C1CC162C2219B800BDC006 /* LAUT_Dark_Liquid_Demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Dark_Liquid_Demo.mp3; sourceTree = "<group>"; };
+		E3C1CC172C2219B800BDC006 /* LAUT_Bass_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Bass_1.mp3; sourceTree = "<group>"; };
+		E3C1CC182C2219B900BDC006 /* LAUT_Driving_Hype_Demo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LAUT_Driving_Hype_Demo.mp3; sourceTree = "<group>"; };
 		E3D8BFA62B2D91E900808D55 /* authenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticationManager.swift; sourceTree = "<group>"; };
 		E3D8BFA82B2D932C00808D55 /* EqualizerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualizerClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +201,17 @@
 		E3370DF62B18A4C400BACC1B /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				E3C1CC172C2219B800BDC006 /* LAUT_Bass_1.mp3 */,
+				E3C1CC0F2C2219B800BDC006 /* LAUT_Bass_2.mp3 */,
+				E3C1CC142C2219B800BDC006 /* LAUT_Bass_3.mp3 */,
+				E3C1CC122C2219B800BDC006 /* LAUT_Brain_Demo.mp3 */,
+				E3C1CC162C2219B800BDC006 /* LAUT_Dark_Liquid_Demo.mp3 */,
+				E3C1CC182C2219B900BDC006 /* LAUT_Driving_Hype_Demo.mp3 */,
+				E3C1CC112C2219B800BDC006 /* LAUT_Drums_1.mp3 */,
+				E3C1CC132C2219B800BDC006 /* LAUT_Drums_2.mp3 */,
+				E3C1CC0E2C2219B700BDC006 /* LAUT_Foghorn_Demo.mp3 */,
+				E3C1CC152C2219B800BDC006 /* LAUT_Serum_Demo.mp3 */,
+				E3C1CC102C2219B800BDC006 /* LAUT_Vital_Demo.mp3 */,
 				E3370DF72B18A4C400BACC1B /* Guitar.mp3 */,
 				E3370DF82B18A4C400BACC1B /* clap_D#1.wav */,
 				E3370DF92B18A4C400BACC1B /* Bass Synth.mp3 */,
@@ -329,21 +362,32 @@
 				E3370E0A2B18A4C400BACC1B /* hi_tom_D2.wav in Resources */,
 				E3370E142B18A4C400BACC1B /* open_hi_hat_A#1.wav in Resources */,
 				E3370E0E2B18A4C400BACC1B /* beat.aiff in Resources */,
+				E3C1CC1E2C2219B900BDC006 /* LAUT_Drums_2.mp3 in Resources */,
 				E3370E092B18A4C400BACC1B /* Bass Synth.mp3 in Resources */,
 				E3370E0B2B18A4C400BACC1B /* Strings.mp3 in Resources */,
 				E3370E102B18A4C400BACC1B /* closed_hi_hat_F#1.wav in Resources */,
 				E3370E0C2B18A4C400BACC1B /* alphabet.mp3 in Resources */,
+				E3C1CC192C2219B900BDC006 /* LAUT_Foghorn_Demo.mp3 in Resources */,
 				E3370E112B18A4C400BACC1B /* bass_drum_C1.wav in Resources */,
 				E36330222B2C9AB400A94076 /* KRSNA-DREAMER.ttf in Resources */,
+				E3C1CC1A2C2219B900BDC006 /* LAUT_Bass_2.mp3 in Resources */,
 				E3370E152B18A4C400BACC1B /* Counting.mp3 in Resources */,
 				E3370E072B18A4C400BACC1B /* Guitar.mp3 in Resources */,
 				E3370E0D2B18A4C400BACC1B /* mid_tom_B1.wav in Resources */,
 				E3370E132B18A4C400BACC1B /* Piano.mp3 in Resources */,
+				E3C1CC202C2219B900BDC006 /* LAUT_Serum_Demo.mp3 in Resources */,
 				E3370DDA2B187F9600BACC1B /* Preview Assets.xcassets in Resources */,
 				E3370DD72B187F9600BACC1B /* Assets.xcassets in Resources */,
+				E3C1CC1C2C2219B900BDC006 /* LAUT_Drums_1.mp3 in Resources */,
+				E3C1CC1F2C2219B900BDC006 /* LAUT_Bass_3.mp3 in Resources */,
+				E3C1CC212C2219B900BDC006 /* LAUT_Dark_Liquid_Demo.mp3 in Resources */,
 				E3370E082B18A4C400BACC1B /* clap_D#1.wav in Resources */,
+				E3C1CC1B2C2219B900BDC006 /* LAUT_Vital_Demo.mp3 in Resources */,
 				E3370E0F2B18A4C400BACC1B /* Synth.mp3 in Resources */,
+				E3C1CC232C2219B900BDC006 /* LAUT_Driving_Hype_Demo.mp3 in Resources */,
 				E3370E122B18A4C400BACC1B /* lo_tom_F1.wav in Resources */,
+				E3C1CC222C2219B900BDC006 /* LAUT_Bass_1.mp3 in Resources */,
+				E3C1CC1D2C2219B900BDC006 /* LAUT_Brain_Demo.mp3 in Resources */,
 				E3370E162B18A4C400BACC1B /* snare_D1.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,7 +565,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "www.laut-samples.com.LAUT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -555,7 +599,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "www.laut-samples.com.LAUT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

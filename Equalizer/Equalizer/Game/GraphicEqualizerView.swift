@@ -48,7 +48,7 @@ struct GraphicEqualizerView: View {
             /////////  DEBUG MODUS //////
 
             
-                Text("wich frequency is pushed?")
+                Text("which frequency is pushed?")
                     .padding()
                     .foregroundColor(.white)
                     .font(.custom("KRSNA-DREAMER", size: 20))

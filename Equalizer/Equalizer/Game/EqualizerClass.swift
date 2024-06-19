@@ -120,7 +120,7 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
     func startGameIntroduction() {
         alertMessage = "Game starts in 5 seconds"
         showAlert = true
-        isGameActive = true
+        //isGameActive = true
         timerCountdown = 5 // Setze den Timer auf 5 Sekunden
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.countdownBeforeGameStart()
@@ -192,7 +192,7 @@ class EqualizerClass: ObservableObject, ProcessesPlayerInput {
          
     // RESET GAME
     func resetGame() {
-        isGameActive = false
+        //isGameActive = false
         timer?.invalidate()
         timer = nil
         resetBandGain(band: correctBand)

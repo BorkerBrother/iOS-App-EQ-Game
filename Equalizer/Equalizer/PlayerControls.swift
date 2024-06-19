@@ -39,7 +39,7 @@ struct PlayerControls: View {
     ]
 
     @State var isPlaying = false
-    @State var sourceName = "Drums"
+    @State var sourceName = "LAUT Foghorn Demo"
     @State var isShowingSources = false
     @State private var dragOver = false
 
